@@ -37,6 +37,11 @@
             <li v-for="(servicio, index) in servicios" :key="index"> {{index + 1}} - {{servicio}} </li>
         </ul>
 
+        <hr>
+
+        <button v-on:click="agregarSaldo">Agregar Saldo</button>
+        <button @click="agregarSaldo">Agregar Saldo</button>
+
     </div>
 
     <script src="main.js">
