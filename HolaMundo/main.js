@@ -5,12 +5,22 @@ const app = Vue.createApp({
             cantidad: 500,
             enlace: 'https://youtube.com/bluuweb',
             estado: true,
-            servicios: ['transferencias', 'pagos', 'giros', 'cheques']
+            servicios: ['transferencias', 'pagos', 'giros', 'cheques'],
+            desactivar: false
         }
     },
     methods: {
         agregarSaldo(){
             this.cantidad += 100;
+        },
+        disminuirSaldo(){
+            if (this.cantidad === 0) {
+                this.desactivar = true
+                alert('Saldo en cero')
+                return
+            } 
+
+            this.cantidad -= 100;
         }
     },
 })
