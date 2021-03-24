@@ -2,7 +2,7 @@ const app = Vue.createApp({
     data(){
         return {
             titulo: 'Mi Banco con Vue.js',
-            cantidad: 500,
+            cantidad: 1000,
             enlace: 'https://youtube.com/bluuweb',
             estado: true,
             servicios: ['transferencias', 'pagos', 'giros', 'cheques'],
