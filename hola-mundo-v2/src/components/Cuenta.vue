@@ -5,10 +5,17 @@
     <div v-for="(servicio, index) in servicios" :key="index">
         {{index + 1}} - {{ servicio }}
     </div>
+    <AccionSaldo texto="Aumentar Saldo"/>
+    <AccionSaldo texto="Disminuir Saldo"/>
 </template>
 
 <script>
+import AccionSaldo from './AccionSaldo'
+
 export default {
+    components: {
+        AccionSaldo
+    },
     name: 'Cuenta',
     data() {
         return {
@@ -16,6 +23,14 @@ export default {
             cuenta: 'Visa',
             estado: true,
             servicios: ['giro', 'abono', 'transferencia']
+        }
+    },
+    methods: {
+        aumentar(){
+            this.saldo += 100
+        },
+        disminuir(){
+            this.saldo -= 100
         }
     },
 
