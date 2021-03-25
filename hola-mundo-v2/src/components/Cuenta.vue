@@ -36,6 +36,7 @@ export default {
     methods: {
         aumentar(){
             this.saldo += 100
+            this.deshabilitar = false
         },
         disminuir(){
             if (this.saldo === 0) {
