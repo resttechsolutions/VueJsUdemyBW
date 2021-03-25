@@ -1,5 +1,5 @@
 <template>
-  <button> {{texto}}  </button>
+  <button @click="accion"> {{texto}}  </button>
 </template>
 
 <script>
@@ -13,6 +13,11 @@ export default {
             
         }
     },
+    methods:{
+        accion(){
+            this.$emit('accion')
+        }
+    }
 
 }
 </script>
