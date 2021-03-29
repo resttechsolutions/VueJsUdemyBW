@@ -6,12 +6,18 @@ export default createStore({
   },
   mutations: {
     incrementar(state) {
-      state.contador = state.contador + 10;
+      state.contador += 10;
+    },
+    disminuir(state) {
+      state.contador -= 10;
     }
   },
   actions: {
     accionIncrementar({ commit }) {
       commit('incrementar')
+    },
+    accionDisminuir({ commit }) {
+      commit('disminuir')
     }
   },
   modules: {
