@@ -5,8 +5,8 @@ export default createStore({
     contador: 150
   },
   mutations: {
-    incrementar(state) {
-      state.contador += 10;
+    incrementar(state, payload) {
+      state.contador += payload;
     },
     disminuir(state, payload) {
       state.contador -= payload;
@@ -14,10 +14,17 @@ export default createStore({
   },
   actions: {
     accionIncrementar({ commit }) {
-      commit('incrementar')
+      commit('incrementar', 10)
     },
     accionDisminuir({ commit }, numero) {
       commit('disminuir', numero)
+    },
+    accionBoton({commit}, objeto){
+      if (objeto.estado) {
+        commit('incrementar', objeto.numero)
+      } else {
+        commit('disminuir', objeto.numero)
+      }
     }
   },
   modules: {
