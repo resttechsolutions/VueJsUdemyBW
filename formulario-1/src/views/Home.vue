@@ -22,7 +22,7 @@
     <div class="mt-2">
       <input type="number" name="" id="" v-model.number="tarea.numero" class="form-control">
       </div>
-    <button type="submit" class="my-2 btn-block btn btn-outline-dark" :disabled="disable">Procesar</button>
+    <button type="submit" class="my-2 btn-block btn btn-outline-dark" :disabled="bloquear">Procesar</button>
     <p class="form-control">{{tarea}}</p>
   </form>
 </template>
@@ -39,8 +39,7 @@ export default {
         nombre:'',
         categorias: [],
         estado:'',
-        numero: 0,
-        deshabilitar: true
+        numero: 0
       }
     }
   },
@@ -57,7 +56,8 @@ export default {
     }
   },
   computed: {
-    disable(){
+    bloquear(){
+      return this.tarea.nombre.trim() === "" ? true: false
       if (this.tarea.nombre != '') {
         this.tarea.deshabilitar = false
       }
