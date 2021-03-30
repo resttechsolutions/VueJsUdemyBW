@@ -53,14 +53,20 @@ export default {
       }
 
       console.log('Campo no esta vacio')
+
+      //enviar datos
+
+      this.tarea = {
+        nombre:'',
+        categorias: [],
+        estado:'',
+        numero: 0
+      }
     }
   },
   computed: {
     bloquear(){
       return this.tarea.nombre.trim() === "" ? true: false
-      if (this.tarea.nombre != '') {
-        this.tarea.deshabilitar = false
-      }
     }
   }
 }
