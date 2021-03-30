@@ -1,6 +1,6 @@
 <template>
-  <form>
-    <input type="text" placeholder="Ingrese Nombre" name="" id="" class="form-control my-2" v-model="tarea.nombre">
+  <form @submit.prevent="procesarFormulario">
+    <input type="text" placeholder="Ingrese Nombre" name="" id="" class="form-control my-2" v-model.trim="tarea.nombre">
     <div class="form-check form-check-inline">
       <input type="checkbox" name="" id="check-1" class="form-check-input" v-model="tarea.categorias" value="javascript">
       <label for="check-1" class="form-check-label">Javascript</label>
@@ -22,7 +22,8 @@
     <div class="mt-2">
       <input type="number" name="" id="" v-model.number="tarea.numero" class="form-control">
       </div>
-    <p>{{tarea}}</p>
+    <button type="submit" class="my-2 btn-block btn btn-outline-dark" :disabled="disable">Procesar</button>
+    <p class="form-control">{{tarea}}</p>
   </form>
 </template>
 
@@ -38,9 +39,29 @@ export default {
         nombre:'',
         categorias: [],
         estado:'',
-        numero: 0
+        numero: 0,
+        deshabilitar: true
       }
     }
   },
+  methods: {
+    procesarFormulario(){
+      console.log(this.tarea)
+
+      if (this.tarea.nombre.trim() === '') {
+        console.log('Campo Vacio')
+        return
+      }
+
+      console.log('Campo no esta vacio')
+    }
+  },
+  computed: {
+    disable(){
+      if (this.tarea.nombre != '') {
+        this.tarea.deshabilitar = false
+      }
+    }
+  }
 }
 </script>
