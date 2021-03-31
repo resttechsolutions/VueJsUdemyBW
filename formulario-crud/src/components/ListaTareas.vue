@@ -1,4 +1,5 @@
 <template>
+  <!-- Listing Tasks -->
   <table class="table">
     <thead>
       <tr>
@@ -15,22 +16,34 @@
         <th scope="row">{{ item.id }}</th>
         <td>{{ item.nombre }}</td>
         <td>
+          <!-- Listing Categories -->
           {{ item.categorias.join(", ") }}
         </td>
         <td>{{ item.estado }}</td>
         <td>{{ item.numero }}</td>
-        <td>Accion</td>
+        <td>
+          <!-- Delete Action -->
+          <button
+            class="btn btn-outline-danger btn-sm"
+            @click="deleteTareas(item.id)"
+          >
+            Eliminar
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   computed: {
     ...mapState(["tareas"]),
+  },
+  methods: {
+    ...mapActions(["deleteTareas"]),
   },
 };
 </script>
