@@ -29,6 +29,12 @@
           >
             Eliminar
           </button>
+          <router-link class="btn btn-outline-warning ml-2 btn-sm" :to="{
+              name:'Editar',
+              params: {
+                  id: item.id
+              }
+          }">Editar</router-link>
         </td>
       </tr>
     </tbody>
