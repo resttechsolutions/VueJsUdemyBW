@@ -12,18 +12,13 @@
     </thead>
     <tbody>
       <tr v-for="item in tareas" :key="item.id">
-        <th scope="row"> {{item.id}}</th>
-        <td>{{item.nombre}}</td>
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.nombre }}</td>
         <td>
-            <span v-for="(cat, index) in item.categorias" :key="index">
-                
-                {{
-                    (item.categorias.length === index + 1) ? cat : cat + ', '
-                }}
-            </span>
+          {{ item.categorias.join(", ") }}
         </td>
-        <td>{{item.estado}}</td>
-        <td>{{item.numero}}</td>
+        <td>{{ item.estado }}</td>
+        <td>{{ item.numero }}</td>
         <td>Accion</td>
       </tr>
     </tbody>
@@ -31,11 +26,11 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-    computed:{
-        ...mapState(['tareas'])
-    }
+  computed: {
+    ...mapState(["tareas"]),
+  },
 };
 </script>
