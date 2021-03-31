@@ -14,6 +14,14 @@
       <tr v-for="item in tareas" :key="item.id">
         <th scope="row"> {{item.id}}</th>
         <td>{{item.nombre}}</td>
+        <td>
+            <span v-for="(cat, index) in item.categorias" :key="index">
+                
+                {{
+                    (item.categorias.length === index + 1) ? cat : cat + ', '
+                }}
+            </span>
+        </td>
         <td>{{item.estado}}</td>
         <td>{{item.numero}}</td>
         <td>Accion</td>
