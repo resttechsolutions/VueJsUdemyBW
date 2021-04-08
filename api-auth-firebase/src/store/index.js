@@ -10,10 +10,14 @@ export default createStore({
       categorias: [],
       estado: '',
       numero: 0
-    }
+    },
+    user: null
   },
   mutations: {
-    cargar(state, payload){
+    setUser(state, payload) {
+      state.user = payload
+    }
+    cargar(state, payload) {
       state.tareas = payload
     },
     set(state, payload) {
@@ -40,13 +44,16 @@ export default createStore({
     }
   },
   actions: {
+    async registrarUsuario({ commit }, usuario){
+      console.log(usuario);
+    }
     async cargarLocalStorage({ commit }) {
       const res = await fetch('https://udemy-api-1a8a8-default-rtdb.firebaseio.com/tareas.json')
       const dataDB = await res.json()
 
       const arrayTareas = []
 
-      for(let id in dataDB){
+      for (let id in dataDB) {
         arrayTareas.push(dataDB[id])
       }
       commit('cargar', arrayTareas)
@@ -56,7 +63,7 @@ export default createStore({
         const res = await fetch(`https://udemy-api-1a8a8-default-rtdb.firebaseio.com/tareas/${tarea.id}.json`, {
           method: 'PUT',
           headers: {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(tarea)
         })
@@ -71,7 +78,7 @@ export default createStore({
     },
     async deleteTareas({ commit }, id) {
       try {
-        await fetch(`https://udemy-api-1a8a8-default-rtdb.firebaseio.com/tareas/${id}.json`,{
+        await fetch(`https://udemy-api-1a8a8-default-rtdb.firebaseio.com/tareas/${id}.json`, {
           method: 'DELETE'
         })
 
@@ -80,7 +87,7 @@ export default createStore({
       } catch (error) {
         console.log(error)
       }
-      
+
     },
     setTarea({ commit }, id) {
       commit('tarea', id)
@@ -98,7 +105,7 @@ export default createStore({
       } catch (error) {
         console.log(error)
       }
-      
+
     }
   },
   modules: {
