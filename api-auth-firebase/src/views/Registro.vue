@@ -1,7 +1,7 @@
 <template>
   <h1 class="my-5">Registro de Usuarios</h1>
 
-  <form>
+  <form @submit.prevent="procesarFormulario">
     <input
       class="form-control my-2"
       type="email"
@@ -23,12 +23,14 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
   data() {
     return {
-      email: "",
-      pass1: "",
-      pass2: "",
+      email: "rafaelalfonso82@gmail.com",
+      pass1: "123123",
+      pass2: "123123",
     };
   },
   computed:{
@@ -41,7 +43,17 @@ export default {
           }
           return true
       }
-  }
+  },
+  methods: {
+      ...mapActions(['registrarUsuario']),
+      procesarFormulario(){
+          this.registrarUsuario({email: this.email, password: this.pass1})
+
+          this.email = '';
+          this.pass1 = '';
+          this.pass2 = '';
+      }
+  },
 };
 </script>
 
