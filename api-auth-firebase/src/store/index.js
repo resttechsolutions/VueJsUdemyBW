@@ -44,6 +44,31 @@ export default createStore({
     }
   },
   actions: {
+    async ingresoUsuario({commit}, usuario){
+      try {
+        const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDVET8GZs4XnomlkitbE9j_5FXQjNfXnxQ',{
+          method: 'POST',
+          body: JSON.stringify({
+            email: usuario.email,
+            password: usuario.password,
+            returnSecureToken: true
+          })
+        })
+
+        const userDB = await res.json()
+
+        if (userDB.error) {
+          return console.log(userDB.error);
+        }
+
+        commit('setUser', userDB)
+        router.push('/')
+
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     async registrarUsuario({ commit }, usuario){
       try {
         const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDVET8GZs4XnomlkitbE9j_5FXQjNfXnxQ',{
@@ -64,6 +89,7 @@ export default createStore({
         }
 
         commit('setUser', userDB)
+        router.push('/ingreso')
       } catch (error) {
         console.log(error);
       }
